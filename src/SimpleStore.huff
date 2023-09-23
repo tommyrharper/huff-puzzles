@@ -16,5 +16,29 @@
 
 
 #define macro MAIN() = takes(0) returns(0) {
-    
+    0x00 calldataload 0xE0 shr          // [func_sig]
+
+    dup1 __FUNC_SIG(store) eq store jumpi // jump to store if func signature matches
+    __FUNC_SIG(read) eq read jumpi // jump to read if func signature matches
+
+    0x00 dup1 revert
+
+    store:
+        STORE()
+
+    read:
+        READ()
+}
+
+#define macro STORE() = takes(0) returns(0) {
+    0x04 calldataload     // load first 32 bytes onto the stack - number 1
+    0x00 sstore
+}
+
+
+#define macro READ() = takes(0) returns(0) {
+    0x00 sload
+
+    0x00 mstore           // place the result in memory
+    0x20 0x00 return      // return the result
 }
