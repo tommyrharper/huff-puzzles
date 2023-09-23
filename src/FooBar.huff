@@ -16,5 +16,20 @@
 
 
 #define macro MAIN() = takes(0) returns(0) {
+    0x00 calldataload 0xE0 shr          // [func_sig]
 
+    dup1 __FUNC_SIG(foo) eq foo jumpi // jump to add1 if func signature matches
+    __FUNC_SIG(bar) eq bar jumpi // jump to add1 if func signature matches
+
+    0x00 dup1 revert
+
+    foo:
+        0x02
+        0x00 mstore           // place the result in memory
+        0x20 0x00 return      // return the result
+
+    bar:
+        0x03
+        0x00 mstore           // place the result in memory
+        0x20 0x00 return      // return the result
 }
