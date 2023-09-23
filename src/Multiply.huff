@@ -11,14 +11,13 @@
 
 #define function multiply(uint256, uint256) payable returns(uint256)
 
-
 #define macro MAIN() = takes(0) returns(0) {
     // Get the function selector
     0x00 calldataload 0xE0 shr          // [func_sig]
 
-    __FUNC_SIG(add1) eq multiply jumpi // jump to add1 if func signature matches
+    __FUNC_SIG(multiply) eq multiply jumpi // jump to add1 if func signature matches
 
-    // 0x00 dup1 revert // Revert if no match is found.
+    0x00 dup1 revert // Revert if no match is found.
 
     multiply:
         MULTIPLY()
