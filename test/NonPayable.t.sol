@@ -18,9 +18,9 @@ contract NonPayableTest is Test {
         vm.deal(address(this), 1 ether);
 
         (bool success, ) = address(nonPayable).call{value: 0 ether}("");
-        assertEq(success, true, "call did not pass as expected");
+        assertEq(success, true, "call passed as expected");
 
         (success, ) = address(nonPayable).call{value: 1 ether}("");
-        assertEq(success, false, "call did not fail as expected");
+        assertEq(success, false, "call failed as expected");
     }
 }
