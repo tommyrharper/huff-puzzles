@@ -10,7 +10,6 @@
 
 #define function sumArray(uint256[]) payable returns(uint256)
 
-
 #define macro MAIN() = takes(0) returns(0) {
     0x00 calldataload 0xE0 shr          // [func_sig]
 
