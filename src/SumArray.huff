@@ -40,7 +40,7 @@
         eq finish jumpi     // [sum, i]
         dup2                // [i, sum, i]
         0x20 mul            // [i * 32, sum, i]
-        0x44 add            // [(i * 32) + 4, sum, i]
+        0x44 add            // [(i * 32) + 0x44, sum, i]
         calldataload        // [element, sum, i]
         add                 // [newSum, i]
         swap1               // [i, newSum]
